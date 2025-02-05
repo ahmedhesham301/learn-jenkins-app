@@ -11,6 +11,7 @@ pipeline {
             }
             steps {
                 sh '''
+                chown -R 123:128 "/var/empty/.npm" 
                 ls -lsa
                 node --version
                 npm --version
