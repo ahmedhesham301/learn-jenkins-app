@@ -6,12 +6,12 @@ pipeline {
             agent{
                 docker{
                     image 'node:18-alpine'
+                    args '--user root'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                chown -R 123:128 "/var/empty/.npm" 
                 ls -lsa
                 node --version
                 npm --version
