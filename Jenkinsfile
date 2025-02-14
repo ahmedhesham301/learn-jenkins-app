@@ -51,7 +51,7 @@ pipeline {
 
             steps {
                 sh '''
-                    sudo chown -R 123:128 "/.npm"
+                    chown -R 123:128 "/.npm"
                     npm install serve
                     node_modules/.bin/serve -s build &
                     sleep 10
