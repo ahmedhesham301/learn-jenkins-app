@@ -12,12 +12,12 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -lsa
-                node --version
-                npm --version
-                npm ci
-                npm run build
-                ls -la
+                    ls -lsa
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
                 '''
             }
         }
@@ -31,8 +31,8 @@ pipeline {
             }
             steps{
                 sh '''
-                test -f ./build/index.html
-                npm test
+                    test -f ./build/index.html
+                    npm test
                 '''
             }
         }
@@ -46,9 +46,9 @@ pipeline {
             }
             steps{
                 sh '''
-                npm install -g serve
-                serve -s build
-                npx playwright test
+                    serve -s build
+                    npx playwright test
+                    npm install -g serve
                 '''
             }
         }
