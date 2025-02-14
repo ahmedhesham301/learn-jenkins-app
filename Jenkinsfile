@@ -51,8 +51,8 @@ pipeline {
 
             steps {
                 sh '''
-                    chown -R 123:128 "/.npm"
                     npm install serve
+                    chown -R 123:128 "/.npm"
                     node_modules/.bin/serve -s build &
                     sleep 10
                     npx playwright test
