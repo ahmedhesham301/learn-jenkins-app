@@ -45,11 +45,13 @@ pipeline {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
                     reuseNode true
+
                 }
             }
 
             steps {
                 sh '''
+                    sudo chown -R 123:128 "/.npm"
                     npm install serve
                     node_modules/.bin/serve -s build &
                     sleep 10
