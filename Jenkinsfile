@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:alpine'
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'node:alpine'
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
@@ -50,7 +50,7 @@ pipeline {
 
             steps {
                 sh '''
-                    npm install serve
+                    npm install --cache /tmp/.npm serve
                     node_modules/.bin/serve -s build &
                     sleep 10
                     npx playwright test
