@@ -3,7 +3,6 @@ pipeline {
     environment{
         NETLIFY_SITE_ID = '3bc43c82-1b1b-412b-bb4a-37ba3100795a'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
-        CI_ENVIRONMENT_URL = 'https://enchanting-crisp-73e6e9.netlify.app/'
     }
 
     stages {
@@ -109,15 +108,6 @@ pipeline {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Staging e2e', reportTitles: '', useWrapperFileDirectly: true])
                 }
             }
-        }
-        
-        stage('Approval') {
-            steps{
-                timeout(15) {
-                    input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
-                }
-            }
-            
         }
 
         stage('Deploy prod') {
