@@ -78,6 +78,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy staging') {
             agent {
                 docker {
@@ -97,6 +98,13 @@ pipeline {
                 '''
             }
         }
+
+        stage('Approval') {
+            timeout(time: 15, unit: 'MINUTES') {
+                input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
+            }
+        }
+
         stage('Deploy prod') {
             agent {
                 docker {
@@ -116,6 +124,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Prod E2E') {
             agent {
                 docker {
